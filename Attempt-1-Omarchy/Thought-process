@@ -1,0 +1,13 @@
+# Thought Process
+
+I'm a cybersecurity student, and I first learned about Linux at university in July 2025. My first experience was through a virtual machine running Ubuntu. I also had to run Windows 10 inside it, and I quickly noticed how much smoother the Linux side felt in comparison. That piqued my curiosity.
+
+Over the following months I researched Linux and discovered it was much more than Ubuntu: there were distros of every kind, and people were reviving old machines with it, among many other interesting things.
+
+I wanted to install it, but I held back because some of the applications I depend on had limited support on Linux.
+
+Recently, I started making my Windows install less bloated, faster, and more customized, using Windhawk, Rainmeter, and ChrisTitusTech's WinUtil. While doing that, my feed kept showing me how customizable Linux is, and the urge to try it grew stronger. Then a video about dual booting appeared on my feed. I looked into it and learned that you can dual boot on almost any machine with enough free space, simply by partitioning the drive.
+
+Around the same time, videos about Omarchy kept showing up. The download was simple, and it looked clean, with Hyprland and easy theme customization, so I chose it for my first attempt.
+
+To prepare, I practised partitioning and installing Omarchy a couple of times in virtual machines, so that mistakes wouldn't damage my real computer. Honestly, though, apart from that practice I didn't do much research and didn't make a proper plan, unlike with my second attempt. That led to a few issues, which I cover in the attempt 1 write-up.
