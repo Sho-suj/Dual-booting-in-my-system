@@ -1,0 +1,29 @@
+# Dual Boot Journey
+
+A long-overdue repo documenting my attempts to dual-boot Linux and Windows on my PC.
+
+This is my **third attempt**. The first two (Omarchy, then Fedora) both worked, but each came with its own problems. I had screenshots and notes for both, but assignment submission week pushed documenting down my priority list. Then a complication with **Safeblock**, a forensic tool that blocks external drives and forces them into read-only mode, forced me to reset my PC, and I lost almost all of it. Only a few photos survive, either shared with a friend or uploaded online. What Safeblock did exactly is covered later in this repo.
+
+## What's in this repo
+
+| Attempt | Distro | Documentation |
+|---------|--------|---------------|
+| 1 | Omarchy | Written from memory, with a few phone photos |
+| 2 | Fedora | Written from memory, with a few phone photos |
+| 3 | TBD | Fully documented and researched as I go |
+
+## My setup
+
+- **Machine:** Acer Nitro V15
+- **Disk:** 2 SSDs (500 GB and 1 TB)
+- **Firmware:** UEFI (Secure Boot status is covered in the documentation)
+- **Other OS:** Windows 11 Pro
+
+## A note on accuracy
+
+Attempts 1 and 2 are reconstructed from memory, so details may be imperfect.
+Attempt 3 is documented step by step, with commands, configs, and screenshots.
+
+## Disclaimer
+
+This is my experience, not a guarantee. Back up your data before touching partitions.
