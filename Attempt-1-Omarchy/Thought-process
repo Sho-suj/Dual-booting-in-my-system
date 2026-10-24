@@ -1,13 +1,33 @@
 # Thought Process
 
+## Background
+
 I'm a cybersecurity student, and I first learned about Linux at university in July 2025. My first experience was through a virtual machine running Ubuntu. I also had to run Windows 10 inside it, and I quickly noticed how much smoother the Linux side felt in comparison. That piqued my curiosity.
 
 Over the following months I researched Linux and discovered it was much more than Ubuntu: there were distros of every kind, and people were reviving old machines with it, among many other interesting things.
 
-I wanted to install it, but I held back because some of the applications I depend on had limited support on Linux.
+I wanted to install it, but I held back because I depend on Windows software and games that don't run well on Linux, such as MS Word, MS PowerPoint, and online games.
 
-Recently, I started making my Windows install less bloated, faster, and more customized, using Windhawk, Rainmeter, and ChrisTitusTech's WinUtil. While doing that, my feed kept showing me how customizable Linux is, and the urge to try it grew stronger. Then a video about dual booting appeared on my feed. I looked into it and learned that you can dual boot on almost any machine with enough free space, simply by partitioning the drive.
+Recently, I started making my Windows install less bloated, faster, and more customised, using Windhawk, Rainmeter, and ChrisTitusTech's WinUtil. While doing that, my feed kept showing me how customisable Linux is, and the urge to try it grew stronger. Then a video about dual booting appeared on my feed. I looked into it and learned that you can dual boot on almost any machine with enough free space, simply by partitioning the drive.
 
-Around the same time, videos about Omarchy kept showing up. The download was simple, and it looked clean, with Hyprland and easy theme customization, so I chose it for my first attempt.
+## Why dual boot?
 
-To prepare, I practised partitioning and installing Omarchy a couple of times in virtual machines, so that mistakes wouldn't damage my real computer. Honestly, though, apart from that practice I didn't do much research and didn't make a proper plan, unlike with my second attempt. That led to a few issues, which I cover in the attempt 1 write-up.
+Since I still need Windows for the software above, replacing it entirely wasn't an option. Dual booting lets me switch whenever I need to, while giving me a real Linux environment to practise in.
+
+Virtual machines are good for learning, but they limit what I can do. I couldn't take on bigger Linux projects like ricing, which needs a real desktop running on real hardware.
+
+There's also a practical reason tied to my degree. As a cybersecurity student, I have to be comfortable working in the terminal. Dual booting is partly a way of forcing myself into that: if Linux is a restart away and not a window I can close, I'll actually use it.
+
+## Choosing Omarchy
+
+Around the same time, videos about Omarchy kept showing up. The download was simple, and it looked clean, with Hyprland and easy theme customisation, so I chose it for my first attempt.
+
+To prepare, I practised partitioning and installing Omarchy a couple of times in virtual machines, so that mistakes wouldn't damage my real computer.
+
+## Talking to my teachers
+
+Before I started, I had a 30-minute conversation with my current module teacher about wanting to dual boot. He never said it outright, but he was clearly advising me not to do it. I kept explaining why I wanted to, and I wasn't really willing to listen. When I couldn't get a yes from him, I went to another teacher, who was fine with it, and I started the process later that night.
+
+## Going in unprepared
+
+Honestly, apart from the VM practice, I didn't do much research and didn't make a proper plan, unlike with my second attempt. That led to a few issues, which I cover in the [attempt 1 write-up](attempt-1-omarchy.md).
