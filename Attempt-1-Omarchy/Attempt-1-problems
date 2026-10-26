@@ -1,0 +1,182 @@
+# Attempt 1: Problems and Fixes
+
+> Written from memory, cross-checked against my own notes. Causes and fixes
+> may still be incomplete in places.
+
+## Quick index
+
+| # | Problem | Area | Status |
+|---|---------|------|--------|
+| 1 | BitLocker recovery key, lost PIN, password, browser sessions | Windows | Fixed |
+| 2 | 1 TB drive unusable in Windows | Windows | Not fixed |
+| 3 | Caps Lock not working | Omarchy | Fixed |
+| 4 | Videos glitching in Chromium-based browsers | Omarchy | Fixed |
+| 5 | Hyprland glitchy | Omarchy | Partly fixed |
+| 6 | NVIDIA driver trouble | Omarchy | Not fully fixed |
+| 7 | BIOS password set by accident | Firmware | Turned out harmless |
+| 8 | Laptop wouldn't turn on, plus battery replacement | Hardware | Resolved |
+
+---
+
+## Windows side
+
+### 1. BitLocker recovery key, lost PIN, password, and browser sessions
+- **What happened:** After Omarchy finished installing, I explored it a bit,
+  then booted into Windows to check it still worked and hadn't been wiped. I
+  was met with a BitLocker recovery screen. Past that, my PIN had been reset,
+  so Windows asked for my laptop's user password instead. I couldn't remember
+  it, and none of my usual passwords worked, so I'm not sure if I had the
+  wrong password or something else was going on. Once I was back in, my
+  browser cache had also been cleared, and I had to log back in to every
+  website.
+- **Cause:** Changing Secure Boot in the BIOS made Windows treat the system as
+  changed. This triggered BitLocker recovery, reset my sign-in PIN, and
+  appears to have cleared my saved browser sessions as well. In hindsight, I
+  likely disabled more in the BIOS than was strictly necessary. Omarchy only
+  requires Secure Boot **or** TPM to be off, not both, and I had changed more
+  than that.
+- **Fix:**
+  - **BitLocker:** I retrieved my recovery key from `aka.ms/myrecoverykey` by
+    signing in with my Microsoft account on another device. Entering the key
+    got me past the recovery screen with no data loss.
+  - **Password:** I used Windows' built-in accessibility-based local account
+    recovery method to reset my password from the lock screen.
+  - **Browser sessions:** Logged back in to each site manually.
+- **Lesson:** A single BIOS change triggered four problems at once. Before
+  touching Secure Boot or TPM settings:
+  1. Back up your BitLocker recovery key.
+  2. Make sure you know your full account password, not just your PIN.
+  3. Have a second recovery method ready (a Microsoft account email, or
+     security questions).
+  4. Only disable what the installer actually requires, not everything that
+     might be related.
+
+### 2. 1 TB drive unusable in Windows
+- **What happened:** After the installation, I checked Disk Management and
+  couldn't find a usable 1 TB drive. I had originally planned to use it as
+  shared storage between Omarchy and Windows.
+- **Cause:** Omarchy formatted the drive as LUKS-encrypted Btrfs, which
+  Windows can't read natively. Disk Management shows it only as an "Unknown
+  Partition".
+- **Fix:** I wasn't able to make it readable from Windows. The drive stayed
+  Omarchy-only for the rest of this attempt.
+- **Lesson:** If you want a drive usable from both systems, create a separate
+  small partition formatted as exFAT or NTFS for shared files, rather than
+  giving the installer the whole drive as a Linux-only, encrypted target.
+
+## Omarchy side
+
+### 3. Caps Lock not working
+- **What happened:** Caps Lock worked fine at the login screen but did
+  nothing inside Hyprland. Pressing it just typed a `.` that disappeared.
+- **Cause:** My Hyprland keyboard config (`~/.config/hypr/input.lua`) had
+  `compose:caps` set in `kb_options`, which turns Caps Lock into a Compose
+  key instead of a normal toggle. The whole config block had also been left
+  commented out at one point, so an earlier attempt to fix it hadn't actually
+  applied.
+- **Fix:** I edited `~/.config/hypr/input.lua`, uncommented the config block,
+  removed `compose:caps`, and kept:
+  ```lua
+  kb_options = "shift:both_capslock_cancel,grp:alts_toggle",
+  ```
+  Then reloaded with:
+  ```bash
+  hyprctl reload
+  ```
+- **Bonus fix:** The same block had `kb_variant = "intl"` set, which turned my
+  apostrophe key into a dead key. Removing that line fixed normal typing too.
+- **Lesson:** Omarchy's keyboard config is Lua, not a plain config file, and
+  an entire block can be silently commented out. Check the file's actual
+  contents with `cat` before assuming a setting isn't applied.
+
+### 4. Videos glitching in Chromium-based browsers
+- **What happened:** YouTube and other video in Chrome and Chromium-based
+  browsers glitched: the player would go black, ads and the skip button were
+  missing, tabs would disappear, and Spotify's interface was oddly zoomed in.
+  Firefox played video fine, so it was specific to Chromium-based browsers.
+- **Cause:** My laptop has hybrid graphics (AMD iGPU + NVIDIA RTX 4050).
+  Checking `chrome://gpu` showed the browser was rendering on the AMD GPU, not
+  NVIDIA, and hardware video decode on that path was the source of the
+  glitching. All the right NVIDIA packages (`nvidia-open-dkms`, `nvidia-utils`,
+  `egl-wayland`, `libva-nvidia-driver`) were already installed, so it wasn't a
+  missing-driver issue. Forcing Chromium onto the NVIDIA render node directly
+  just crashed it.
+- **Fix:** Disabled hardware video decode for each Chromium-based browser by
+  adding a flag to its flags file, then fully quitting and relaunching it:
+  ```bash
+  # Chromium
+  echo "--disable-accelerated-video-decode" >> ~/.config/chromium-flags.conf
+  # Brave
+  echo "--disable-accelerated-video-decode" >> ~/.config/brave-flags.conf
+  ```
+  This didn't work for Google Chrome specifically, so I removed Chrome and
+  switched to Brave instead.
+- **Lesson:** On hybrid-graphics laptops, check `chrome://gpu` to see which
+  GPU a Chromium-based browser is actually using before assuming a driver is
+  missing. Firefox not having the same bug is a good way to confirm it's
+  browser-specific rather than a system-wide GPU problem.
+
+### 5. Hyprland glitchy
+- **What happened:** General instability and glitchiness in the Hyprland
+  session, beyond just the browser video issue above.
+- **Cause:** Likely the same root cause as the video glitching and the NVIDIA
+  driver trouble below: Hyprland is a Wayland compositor, and NVIDIA's
+  proprietary driver on hybrid graphics is a rough combination that needs
+  careful setup (correct driver package, `egl-wayland`, and environment
+  variables pointing at the right GPU).
+- **Fix:** Partly improved after installing the correct NVIDIA packages and
+  setting environment variables in the Hyprland config, but it was never
+  fully smooth for the rest of this attempt.
+- **Lesson:** NVIDIA plus Wayland plus hybrid graphics is still one of the
+  rougher combinations in the Linux desktop space. It's worth researching
+  before picking a Wayland-based distro on an NVIDIA laptop.
+
+### 6. NVIDIA driver trouble
+- **What happened:** My laptop's NVIDIA RTX 4050 (alongside an AMD iGPU)
+  caused repeated friction under Hyprland, contributing to the video glitching
+  and general instability above.
+- **Cause:** Hyprland needs the open NVIDIA driver (`nvidia-open-dkms`,
+  `nvidia-utils`), `egl-wayland`, and correct environment variables to work
+  properly on hybrid graphics. Even with those installed, some rough edges
+  remained.
+- **Fix:** Installed the recommended driver stack, which helped, but the
+  combination was never fully stable. This was one of the reasons I was open
+  to trying a different distro.
+- **Lesson:** On a hybrid-graphics laptop, running the desktop on the AMD iGPU
+  and reserving NVIDIA for heavy tasks is the more stable approach than
+  letting everything default to NVIDIA under Wayland.
+
+## Firmware and hardware
+
+### 7. BIOS password set by accident
+- **What happened:** Pressing F2 to enter BIOS setup later showed an "Enter
+  current password" prompt I didn't remember setting.
+- **Cause:** On Acer BIOS, the Secure Boot option is often greyed out until a
+  Supervisor Password is set. I likely created one without realising it while
+  changing Secure Boot earlier, and then forgot it.
+- **Fix:** It turned out not to block anything important: the password only
+  locks BIOS setup (F2), not booting. I confirmed the system was still in the
+  state I expected using `tpm.msc` (TPM ready for use) and `msinfo32` (Secure
+  Boot State: Off), so no BIOS access was actually needed. I properly reset
+  the BIOS password during my second attempt (Fedora).
+- **Lesson:** Write down any BIOS/firmware password immediately when you set
+  one, even by accident. If you get locked out, check what it actually
+  restricts before panicking: it may not block booting at all.
+
+### 8. Laptop wouldn't turn on, plus battery replacement
+- **What happened:** At one point the laptop wouldn't turn on: the fans spun
+  and the keyboard lit up, but nothing showed on screen. Separately, the
+  battery stopped holding a charge and needed replacing.
+- **Cause:** The "won't turn on" scare traced back to mashing F2 repeatedly
+  during the boot logo transition and forcing a power-off, which can corrupt
+  firmware boot variables. The battery issue appears to be a separate,
+  unrelated hardware fault rather than anything caused by the dual boot.
+- **Fix:** A repair shop resolved the boot issue simply by plugging the
+  laptop in and powering it on; no part replacement was needed. For the
+  battery, I ordered a replacement (part **AP21D8M**, not the AP18E7M/AP18E8M
+  listings sold for older Nitro 5/Predator models, which aren't compatible)
+  and confirmed it matched my Nitro ANV15-41 before buying.
+- **Lesson:** Press BIOS keys (F2/F12) once and wait, rather than mashing them
+  during a logo transition, especially if you force a power-off afterwards.
+  When buying a replacement battery, double-check the part number against
+  your exact model rather than trusting a listing's title.
