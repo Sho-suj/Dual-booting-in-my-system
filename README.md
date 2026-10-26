@@ -105,6 +105,18 @@ Omarchy installed successfully.
 Because Omarchy went on the 1 TB drive and Windows stayed on the 500 GB drive,
 the two systems kept separate boot entries. I chose between them using
 [the F12 boot menu]
+
 <img width="400" alt="Windows" src="https://github.com/user-attachments/assets/09d115a4-fa75-4a4b-ac60-dcab96f487ea" />
+
 <img width="400" alt="Omarchy" src="https://github.com/user-attachments/assets/035f89e1-a939-4ae8-8e57-56c9fbaa955c" />
 
+## Problems and fixes
+
+Several problems appeared after the install, on the Omarchy side, the Windows
+side, and the hardware. Each one is documented with its cause and fix in
+[attempt-1-problems.md](attempt-1-problems.md).
+
+## Final result
+
+Omarchy installed successfully, and I could switch to Windows whenever I needed
+to. I used the Linux terminal regularly to get comfortable with it.
