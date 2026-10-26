@@ -114,7 +114,7 @@ the two systems kept separate boot entries. I chose between them using
 
 Several problems appeared after the install, on the Omarchy side, the Windows
 side, and the hardware. Each one is documented with its cause and fix in
-[attempt-1-problems.md]([attempt-1-problems.md](https://github.com/Sho-suj/Dual-booting-in-my-system/blob/main/Attempt-1-Omarchy/Attempt-1-problems)).
+[attempt-1-problems.md](https://github.com/Sho-suj/Dual-booting-in-my-system/blob/main/Attempt-1-Omarchy/Attempt-1-problems).
 
 ## Final result
 
