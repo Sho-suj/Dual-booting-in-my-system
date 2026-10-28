@@ -1,0 +1,25 @@
+## Why I left Omarchy
+
+After using Omarchy for a while and trying to get comfortable with it, I
+noticed something I wasn't happy with. It was clean-looking and let me be
+free with whatever theme or look I wanted, but I believe it also took away
+what makes ricing Linux fun in the first place: figuring out what works,
+what you like, and what you don't, through your own trial and error. It came
+pre-installed with a lot of apps I didn't use or would have preferred a
+different alternative for, which didn't leave much room for that.
+
+Not to mention, the NVIDIA issues I faced kept becoming more and more
+noticeable. Ironically, Omarchy ended up feeling bloated, the same complaint
+I originally had about Windows, and at times it felt overwhelming, which I
+didn't like as someone who wasn't yet used to the Linux space. Using it made
+me realise what I actually wanted: something clean and simple to start with,
+that I could slowly rice and make more complex over time. That way I could
+transition from something easy to understand to a more complex system I had
+full control over, instead of starting at "complex" and working backward.
+
+Giving Omarchy the entire 1 TB drive also stopped making sense the more I
+thought about it. One of my reasons for installing a separate drive in the
+first place was that Windows was running low on space, and handing the whole
+second drive to Linux undid that. Between the lost space, the apps I didn't
+need, and the NVIDIA friction, I decided to reset and try a more
+beginner-friendly distro instead.
