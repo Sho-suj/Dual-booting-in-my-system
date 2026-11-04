@@ -20,4 +20,5 @@ instead of booting into the newly installed operating system. This created a con
 3. Locate the **Boot Order** list.
 4. Ensure that **Hard Disk** is enabled and move it above **Optical** using the up and down arrows.
 
-This prioritised the virtual hard disk over the installation media, allowing VirtualBox to boot from the newly installed Fedora system instead of restarting the installation process.
+This prioritised the virtual hard disk over the installation media, allowing VirtualBox to boot from the newly installed Fedora system instead of restarting the installation 
+process.
