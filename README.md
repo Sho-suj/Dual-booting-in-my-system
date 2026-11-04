@@ -123,8 +123,9 @@ to. I used the Linux terminal regularly to get comfortable with it.
 
 
 # Attempt 2: Fedora
->Written from memory, cross-checked against my own notes. Details may be
->imperfect.
+
+> Written from memory, cross-checked against my own notes. Details may be
+> imperfect.
 
 ## Reclaiming the drive from Omarchy
 
@@ -135,7 +136,7 @@ resize. I needed it back to plain, usable space first.
 I opened Command Prompt as Administrator and used DiskPart:
 1. _diskpart_
 2. _list disk_
-3. _select disk 1_
+3. _select disk 0_
 4. _detail disk_
 5. _clean_
 6. _convert gpt_
@@ -144,7 +145,6 @@ I opened Command Prompt as Administrator and used DiskPart:
 9. _assign_
 
 <img width="400" alt="Diskpart command line" src="https://github.com/user-attachments/assets/f59b690c-5776-4a4b-b0af-d961731bd4b3" />
-
 
 - `list disk` showed Disk 0 as 953 GB (the 1 TB SSD that had Omarchy) and Disk
   1 as 476 GB (the Windows drive), which confirmed I had the right one
@@ -160,6 +160,7 @@ I opened Command Prompt as Administrator and used DiskPart:
 > the disk number with `list disk` and `detail disk` before running it. On a
 > different machine, the numbers may not match mine, so never copy `select
 > disk 0` blindly.
+
 <img width="400" alt="Disk after command" src="https://github.com/user-attachments/assets/ab9635bd-78f0-429f-8408-b3104939cdba" />
 
 ## Preparation
@@ -169,11 +170,14 @@ I opened Command Prompt as Administrator and used DiskPart:
   another OS to touch.
 - **BitLocker:** Left BitLocker alone on both C: and Terra this time, rather
   than turning it off like I did in attempt 1.
+- **Virtual Machine Practice:** Like omarchy I also practiced installing
+  fedora in a virtual machine first and came across a loop problem where
+  fedora after completion kept relooping and the installation process
+  began again. More will be discussed in the problems section for it.
 
 I downloaded the Fedora ISO and Fedora Media Writer at the same time.
 
 <img width="400" alt="Fedora ISO and Fedora Media Writer downloads" src="https://github.com/user-attachments/assets/5cf4d9c2-6d83-4672-a478-dded0e3b7c57" />
-
 
 While those were downloading, I partitioned Terra, giving Fedora 307,200 MB
 (300 GB) of it. I did this to make Terra a shareable drive between Windows
@@ -188,9 +192,53 @@ tool would help me get more familiar with its ecosystem from the start.
 
 <img width="400" alt="KDE Plasma" src="https://github.com/user-attachments/assets/36425ee8-257c-4e47-acb8-08140bb68b25" />
 
-
 In Fedora Media Writer, I selected the ISO I'd downloaded and wrote it to my
 pendrive.
 
-<img width="787" height="627" alt="image" src="https://github.com/user-attachments/assets/18941130-2bc0-4d1e-b7da-41b5d1619838" />
+<img width="787" height="627" alt="Fedora Media Writer writing the ISO" src="https://github.com/user-attachments/assets/18941130-2bc0-4d1e-b7da-41b5d1619838" />
 
+## Installation
+
+I shut down my laptop fully, then tapped **F12** once for the boot menu. I
+then booted from the USB, which started the installer for Fedora.
+
+The installation process itself was very straightforward:
+
+1. **Language and keyboard layout:** picked both at the start.
+
+<img width="400" alt="Language selection" src="https://github.com/user-attachments/assets/6f2d4448-060a-4e5d-97bc-069ee975047f" />
+
+2. **Destination:** selected **Terra** as the install target. I did this very
+   carefully, since a simple mistake here could wipe the whole Windows side.
+
+<img width="400" alt="Installation destination set to Terra" src="https://github.com/user-attachments/assets/60676991-21e9-4587-a181-bc83ef1f6a94" />
+
+3. **Encryption passphrase and keyboard layout at boot:** set a passphrase
+   for the new Fedora partition, and configured the keyboard layout
+   separately for the boot/decrypt screen.
+
+<img width="400" alt="Encryption passphrase prompt" src="https://github.com/user-attachments/assets/a8b8ec6a-c2ff-4028-9401-30c159d45bb4" />
+
+After confirming everything, I waited for the installer to finish.
+
+<img width="400" alt="Fedora installing" src="https://github.com/user-attachments/assets/8c58a0d7-5401-4ec9-8dbf-6412e2d8e887" />
+
+Fedora installed successfully, sharing the 1 TB drive with Terra rather than
+taking the whole disk like Omarchy had.
+
+<img width="400" alt="Fedora installation complete" src="https://github.com/user-attachments/assets/60d07b9d-46cd-4f69-b80c-3844f303d20c" />
+
+<img width="400" alt="Disk partition confirmed working" src="https://github.com/user-attachments/assets/8257d680-4220-4682-babb-815a0f863497" />
+
+## Problems and fixes
+
+There weren't any problems that arose in fedora, it was mostly smooth with no 
+major complains from my side. The few problem I had were mostly related to 
+beginner problems with the terminal which have been documented in the problems
+section.
+
+## Final result
+
+Fedora installed successfully, and I could switch to Windows and use a shared
+SSD to share files between fedora and Windows. After using it for a couple of 
+months, I got more used to the terminal command and linux in general.
