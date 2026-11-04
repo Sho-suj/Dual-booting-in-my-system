@@ -230,6 +230,15 @@ taking the whole disk like Omarchy had.
 
 <img width="400" alt="Disk partition confirmed working" src="https://github.com/user-attachments/assets/8257d680-4220-4682-babb-815a0f863497" />
 
+## Bootloader
+
+Like Omarchy, Fedora was installed on the 1 TB drive with a separate boot 
+entry in the UEFI firmware. I could switch between the two operating systems
+using the F12 boot menu.
+
+<img width="400" alt="Boot Menu" src="https://github.com/user-attachments/assets/908fe627-1174-40e8-84e7-7c8c5dd7c4ab" />
+
+
 ## Problems and fixes
 
 There weren't any problems that arose in fedora, it was mostly smooth with no 
