@@ -1,1 +1,37 @@
+## Choosing Fedora
 
+### Initial thought process
+
+The main reason I left Omarchy was the 1 TB SSD being used exclusively by
+Omarchy, as covered in [why-i-left.md](why-i-left.md). I wanted both Windows
+and Omarchy, or whatever replaced it, to share that drive. Although Omarchy
+was overwhelming at times, I knew more use would have made me more
+comfortable with it eventually. But I wanted to start over with something
+simpler, with room to customize later once I got used to Linux's default
+functions.
+
+So I started searching for distros with those qualities, along with solid
+NVIDIA driver support. I had a few in mind: Ubuntu and Kali, which I'd been
+introduced to at university; Fedora, my original pick before Omarchy caught
+my attention; and Arch Linux.
+
+### Distro pick
+
+**Ubuntu** is simple for beginners and the most popular distro, but I'd
+already used it through my course. I wanted something newer to me, that I
+could build on my own.
+
+**Kali** is excellent for pentesting, but beyond that I don't think it's a
+good OS to learn Linux on day to day. For pentesting itself, running it in a
+VM, so my actual computer wouldn't be at risk, is the better choice anyway.
+So I ruled it out too.
+
+**Arch Linux**, after more research, turned out to be genuinely complex to
+install and isn't recommended for beginners. I took it off the list quickly.
+
+**Fedora** was my original pick for dual booting before Omarchy took my
+attention. Researching it again, I found the UI clean and customizable,
+exactly what I was looking for. It also had support for NVIDIA drivers,
+although proprietary rather than open source. Fedora's choice between KDE
+Plasma and GNOME stood out to me too, and I went with Plasma since I found
+it more customizable than GNOME. Fedora became my choice.
