@@ -120,3 +120,46 @@ side, and the hardware. Each one is documented with its cause and fix in
 
 Omarchy installed successfully, and I could switch to Windows whenever I needed
 to. I used the Linux terminal regularly to get comfortable with it.
+
+
+# Attempt 2: Fedora
+>Written from memory, cross-checked against my own notes. Details may be
+>imperfect.
+
+## Reclaiming the drive from Omarchy
+
+Before I could do anything else, I had to deal with the 1 TB SSD still being
+formatted as LUKS-encrypted Btrfs from Omarchy, which Windows can't read or
+resize. I needed it back to plain, usable space first.
+
+I opened Command Prompt as Administrator and used DiskPart:
+1. _diskpart_
+2. _list disk_
+3. _select disk 1_
+4. _detail disk_
+5. _clean_
+6. _convert gpt_
+7. _create partition primary_
+8. _format fs=ntfs quick_
+9. _assign_
+
+<img width="400" alt="Diskpart command line" src="https://github.com/user-attachments/assets/f59b690c-5776-4a4b-b0af-d961731bd4b3" />
+
+
+- `list disk` showed Disk 0 as 953 GB (the 1 TB SSD that had Omarchy) and Disk
+  1 as 476 GB (the Windows drive), which confirmed I had the right one
+  selected before going any further.
+- `detail disk` double-checked it.
+- `clean` wiped the Omarchy partitions, leaving raw unallocated space.
+- `convert gpt`, `create partition primary`, `format fs=ntfs quick`, and
+  `assign` turned that space back into a normal NTFS partition Windows could
+  use.
+
+> **Warning:** `clean` wipes the entire selected disk. Since the 1 TB drive
+> held only Omarchy at this point, this was safe for me, but always confirm
+> the disk number with `list disk` and `detail disk` before running it. On a
+> different machine, the numbers may not match mine, so never copy `select
+> disk 0` blindly.
+<img width="400" alt="Disk after command" src="https://github.com/user-attachments/assets/ab9635bd-78f0-429f-8408-b3104939cdba" />
+
+
