@@ -1,0 +1,23 @@
+## Attempt 2: Problems and Fixes
+
+> Written from memory and cross-checked against my own notes. Some causes and fixes may still be incomplete.
+
+Unlike my first attempt with Omarchy, I did not encounter any significant problems during the Fedora installation itself. Most of the difficulties I experienced occurred 
+later, while using Fedora, particularly when I was unfamiliar with certain terminal commands for installing software, editing configurations and exploring the system.
+
+### 1. Virtual Machine Installation Loop
+
+**Problem:** As mentioned in the README, before installing Fedora on my physical machine, I practised the installation process
+using VirtualBox. I did this to become familiar with the installation procedure and reduce the risk of accidentally damaging my existing Windows installation.
+
+During the practice installation, I encountered an issue where the virtual machine restarted after Fedora had finished installing and returned to the installation process
+instead of booting into the newly installed operating system. This created a continuous installation loop.
+
+**Fix:** I resolved this by changing the virtual machine's boot order in VirtualBox:
+
+1. Open the virtual machine's **Settings**.
+2. Navigate to **System > Motherboard**.
+3. Locate the **Boot Order** list.
+4. Ensure that **Hard Disk** is enabled and move it above **Optical** using the up and down arrows.
+
+This prioritised the virtual hard disk over the installation media, allowing VirtualBox to boot from the newly installed Fedora system instead of restarting the installation process.
