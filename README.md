@@ -162,4 +162,35 @@ I opened Command Prompt as Administrator and used DiskPart:
 > disk 0` blindly.
 <img width="400" alt="Disk after command" src="https://github.com/user-attachments/assets/ab9635bd-78f0-429f-8408-b3104939cdba" />
 
+## Preparation
+
+- **Fast Startup:** Turned off Fast Startup in Windows, since it can leave
+  the Windows filesystem in a partially hibernated state, which is unsafe for
+  another OS to touch.
+- **BitLocker:** Left BitLocker alone on both C: and Terra this time, rather
+  than turning it off like I did in attempt 1.
+
+I downloaded the Fedora ISO and Fedora Media Writer at the same time.
+
+<img width="400" alt="Fedora ISO and Fedora Media Writer downloads" src="https://github.com/user-attachments/assets/5cf4d9c2-6d83-4672-a478-dded0e3b7c57" />
+
+
+While those were downloading, I partitioned Terra, giving Fedora 307,200 MB
+(300 GB) of it. I did this to make Terra a shareable drive between Windows
+and Fedora, rather than handing over the whole thing like I did with Omarchy.
+
+<img width="400" alt="Shrinking Terra to free up space for Fedora" src="https://github.com/user-attachments/assets/e30a67ef-26ce-40dd-85ec-305fdd49c747" />
+
+For the ISO, I chose the **KDE Plasma** version of Fedora, and downloaded
+**Fedora Media Writer 5.3.2**. I could have reused Rufus for this, but I
+wanted to try Fedora Media Writer instead, since I figured using Fedora's own
+tool would help me get more familiar with its ecosystem from the start.
+
+<img width="400" alt="KDE Plasma" src="https://github.com/user-attachments/assets/36425ee8-257c-4e47-acb8-08140bb68b25" />
+
+
+In Fedora Media Writer, I selected the ISO I'd downloaded and wrote it to my
+pendrive.
+
+<img width="787" height="627" alt="image" src="https://github.com/user-attachments/assets/18941130-2bc0-4d1e-b7da-41b5d1619838" />
 
