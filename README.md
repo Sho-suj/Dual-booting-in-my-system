@@ -251,3 +251,6 @@ section.
 Fedora installed successfully, and I could switch to Windows and use a shared
 SSD to share files between fedora and Windows. After using it for a couple of 
 months, I got more used to the terminal command and linux in general.
+<img width="1602" height="861" alt="image" src="https://github.com/user-attachments/assets/edb362ee-d2ca-4319-80ba-9f2efac9348d" />
+<img width="1792" height="865" alt="image" src="https://github.com/user-attachments/assets/564e1b12-38c9-4898-902f-0031041aea73" />
+<img width="1861" height="1075" alt="image" src="https://github.com/user-attachments/assets/c63f60c1-da3c-43f1-a5a1-a2a7534a3f25" />
