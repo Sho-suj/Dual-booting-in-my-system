@@ -1,0 +1,106 @@
+# Attempt 2: Fedora — Why I Left
+
+I have no complaints about Fedora. It was one of the distros I used for
+months and never got bored of. Because of Fedora, I became more comfortable
+not only with the terminal, but with Linux in general. I started using the
+terminal for things like downloading software with `winget`, taking notes in
+plain text files, moving files around, searching between things, and
+updating the distro itself through the terminal. I also got properly
+introduced to tools like Vim and nano, which I'd previously only seen through
+TryHackMe rooms and YouTube videos. Fedora would definitely be a distro I'd
+use for everyday work, as well as career-focused tasks.
+
+But I had to leave Fedora because of a mistake I made while working on a
+module at university.
+
+### How it started
+
+During my Computer Forensics class, we had to download **Safeblock**, a
+Windows-based software write blocker developed by ForensicSoft and used in
+digital forensics to prevent accidental modification of evidence on storage
+media. It set the SSD I'd installed it on to read-only mode, which caused
+various boot issues on the Windows side: the boot logo stayed on screen for a
+long time, it restarted constantly, and it would freeze completely once it
+reached the lock screen.
+
+Regardless of the corruption Safeblock caused, Fedora worked perfectly
+throughout. I couldn't find a single fault in it, and every program ran
+smoothly. But I very quickly noticed that Fedora also wasn't able to open the
+SSD. Trying to view its contents brought up a pop-up saying something like
+"You don't have privileges to view or change this folder." That was how I
+first found out something had gone wrong. I didn't focus on it much at the
+time, keeping it in mind while prioritising an assignment that was due in a
+couple of weeks.
+
+### Discovering the real damage
+
+Once I'd finished the research for that assignment, I switched to Windows to
+open **Autopsy** (a free, open-source digital forensics platform and
+graphical interface for The Sleuth Kit, used to examine disk images, storage
+drives, and digital artifacts). That's when I was met with the lock screen
+freezes and being stuck on the Windows logo for a long time.
+
+After multiple hard resets, searching online for similar cases, and asking
+Claude and ChatGPT for possible fixes, I finally got into the Windows side,
+only to find I couldn't open any files on the Terra SSD. Every attempt
+brought up a pop-up along the lines of "This file and multiple others are
+corrupted."
+
+### First attempts at a fix
+
+I tried opening Command Prompt as administrator, but it was corrupted too. I
+then opened PowerShell and ran a scan with `sfc /scannow`, which fixed the
+Command Prompt problem, but I still couldn't access the drive or its
+contents.
+
+I spent the whole day trying to fix it, but with my assignment due in a
+couple of weeks, I decided to deal with the deeper problem later. For the
+moment, I'd remove the blocked drive, hoping that would stop the boot
+corruption and let me focus on my work without too much trouble. Just to be
+safe, I searched "will removing a drive from a laptop cause the dual boot to
+be damaged" and found that it wouldn't, so I didn't hesitate to remove it.
+
+### When it got worse
+
+Once I removed the drive, the Windows side got worse, not better: it was no
+longer able to boot to the lock screen at all. I reinstalled the SSD, hoping
+that would let it boot properly again, and tried several terminal commands
+to fix it, but nothing worked.
+
+As a last resort, I went back to the restore point I'd originally set up for
+the dual boot. That actually worked: Windows stopped freezing and started
+working properly again, though it still didn't fix the blocked SSD itself.
+
+### Running out of options
+
+Over the following days, I kept troubleshooting through the terminal, asked
+AI agents for help, got advice from a connection on LinkedIn, contacted
+Safeblock support, and eventually got a professor to look into it (and got
+scolded for it). Nothing worked. With time running out, I had no choice but
+to reset the Windows side completely, which would fix not just the
+corrupted, blocked drive, but also make the system a bit faster overall.
+
+### Afterward
+
+Once Windows was fully reset, I focused on the assignment for a couple of
+days and finished it in time, recording a video as part of the submission. I
+passed with 70+ marks and genuinely enjoyed the process.
+
+When I logged back into the Fedora side, I found I still couldn't access the
+SSD, which ruined my original goal: using it as a bridge to share files
+between Windows and Linux, switching to whichever I needed without redoing
+work or opening a new application just to move a file. I was still able to
+use Fedora normally otherwise, but I also noticed the limited space I'd
+originally partitioned for it was starting to affect performance, since I
+now had to download ISO images separately inside Fedora as well.
+
+I didn't lose hope. I decided to treat it as an opportunity to properly
+finish documenting the journey for both Omarchy and Fedora, and to finally
+start fresh with something similar to Fedora that gave me everything I
+needed.
+
+As much as I liked Fedora, I know that putting myself in uncomfortable,
+unfamiliar territory is where I grow and learn the most. I also wanted to
+document my journey properly this time, so I used this problem as an
+opportunity to actually document a project the right way: showing what I
+did, how I did it, and what problems came up along the way.
