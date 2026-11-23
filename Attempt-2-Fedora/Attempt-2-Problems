@@ -1,30 +1,110 @@
-## Attempt 2: Problems and Fixes
+# Attempt 2: Problems and Fixes
 
-> Written from memory and cross-checked against my own notes. Some causes and fixes may still be incomplete.
+> Written from memory and cross-checked against my own notes. Some causes and
+> fixes may still be incomplete.
 
-Unlike my first attempt with Omarchy, I did not encounter any significant problems during the Fedora installation itself. Most of the difficulties I 
-experienced occurred 
-later, while using Fedora, particularly when I was unfamiliar with certain terminal commands for installing software, editing configurations and exploring 
-the system.
+Unlike my first attempt with Omarchy, I didn't encounter any significant
+problems during the Fedora installation itself. Most of the difficulties I
+experienced came later, while actually using Fedora, particularly when I was
+unfamiliar with certain terminal commands for installing software, editing
+configurations, and exploring the system in general.
 
-### 1. Virtual Machine Installation Loop
+## Quick index
 
-**Problem:** As mentioned in the README, before installing Fedora on my physical machine, I practised the installation process
-using VirtualBox. I did this to become familiar with the installation procedure and reduce the risk of accidentally damaging my existing Windows installation.
+| # | Problem | Status |
+|---|---------|--------|
+| 1 | Virtual machine installation loop | Fixed |
+| 2 | Fedora picked as default boot priority | Worked around |
+| 3 | Switching to Windows from Fedora triggered a broken BitLocker prompt | Cause found, not fixed |
+| 4 | Safeblock set the shared SSD to read-only | Not fixed |
 
-During the practice installation, I encountered an issue where the virtual machine restarted after Fedora had finished installing and returned to the 
-installation process
-instead of booting into the newly installed operating system. This created a continuous installation loop.
+---
 
-**Fix:** I resolved this by changing the virtual machine's boot order in VirtualBox:
+### 1. Virtual machine installation loop
 
-1. Open the virtual machine's **Settings**.
-2. Navigate to **System > Motherboard**.
-3. Locate the **Boot Order** list.
-4. Ensure that **Hard Disk** is enabled and move it above **Optical** using the up and down arrows.
+- **What happened:** As mentioned in the README, before installing Fedora on
+  my physical machine, I practised the installation process using
+  VirtualBox, to get familiar with the procedure and reduce the risk of
+  damaging my existing Windows install. During one of those practice runs,
+  the virtual machine restarted after Fedora finished installing, but
+  instead of booting into the newly installed OS, it returned to the
+  installer again, creating a continuous installation loop.
+- **Cause:** VirtualBox's boot order still had the virtual optical drive
+  (the installation media) prioritised above the virtual hard disk, so every
+  restart re-launched the installer instead of booting the new system.
+- **Fix:** I changed the virtual machine's boot order in VirtualBox:
+  1. Open the virtual machine's **Settings**.
+  2. Navigate to **System > Motherboard**.
+  3. Locate the **Boot Order** list.
+  4. Make sure **Hard Disk** is enabled, and move it above **Optical** using
+     the up and down arrows.
 
-This prioritised the virtual hard disk over the installation media, allowing VirtualBox to boot from the newly installed Fedora system instead of restarting 
-the installation process.
+  This prioritised the virtual hard disk over the installation media, so
+  VirtualBox booted into the newly installed Fedora system instead of
+  restarting the installer.
 
-Besides said problem with virtual box, the installation and setup of fedora went very smoothly with no added issues while it also making my computer feel 
-smoother and much more cleaner. 
+Apart from this VirtualBox issue, the installation and setup of Fedora on the
+real machine went very smoothly, with no added problems, and it made my
+computer feel noticeably smoother and cleaner overall.
+
+### 2. Fedora picked as the default boot priority
+
+- **What happened:** Not really a bug, but it did cause complications with
+  Windows. Whenever my laptop turned on, Fedora was chosen as the boot
+  priority by default, so unless I interrupted the boot with F12 and
+  selected Windows manually, it would automatically boot into Fedora. This
+  was actually intentional on my part, since I wanted Fedora to boot first
+  and push me into daily-driving it instead of Windows. The complication came
+  during Windows updates: when Windows restarted mid-update, it booted into
+  Fedora instead of continuing the update.
+- **Cause:** Fedora's bootloader (GRUB) was set as the default boot entry,
+  which doesn't distinguish between a normal restart and a Windows-update
+  restart, so it always sent the system to Fedora unless I intervened.
+- **Fix:** Changing the boot priority to Windows during updates, then back to
+  Fedora afterward, would have been a cleaner fix, but what I actually did
+  was give the screen my full attention during updates, and manually
+  interrupt the boot to select Windows whenever a restart happened.
+
+### 3. Switching to Windows from Fedora triggered a broken BitLocker prompt
+
+- **What happened:** Whenever I missed the boot interruption and ended up
+  selecting Windows from GRUB's own boot menu (rather than Windows Boot
+  Manager directly from F12), it showed a BitLocker recovery screen.
+  Entering the recovery code didn't work, and I had to hard reset, boot back
+  into Fedora, interrupt the boot again, and select Windows from the
+  firmware's boot menu instead.
+- **Cause:** This turned out to be a known GRUB + BitLocker + TPM issue.
+  When GRUB chainloads into Windows (rather than Windows being booted
+  directly by the firmware), it changes the TPM's boot measurements, so
+  BitLocker can't confirm the boot path is safe and falls back to asking for
+  the recovery key. Going through F12 and choosing Windows Boot Manager
+  directly at the firmware level skips GRUB entirely, which is why that path
+  worked and GRUB's own menu didn't.
+- **Fix:** I never found a permanent fix, just the workaround of always
+  using F12 to pick Windows directly. Two real fixes exist, documented by
+  others who've hit the same issue, though I didn't try them myself:
+  1. Edit GRUB's Windows boot entry to exit cleanly before chainloading
+     (using a tool like Grub Customizer), so Windows boots in a way BitLocker
+     recognises.
+  2. Properly re-enable Secure Boot for the Linux side (for example with
+     `sbctl`), since BitLocker's TPM protector expects Secure Boot to be on
+     to unseal the key safely.
+- **Lesson:** If you're dual-booting with BitLocker, always boot Windows
+  directly from the firmware's boot menu (F12 or equivalent), not from
+  inside GRUB's own menu, unless you've specifically fixed GRUB's handoff
+  first.
+
+### 4. Safeblock set the shared SSD to read-only
+
+- **What happened:** While working on one of my assignments, I noticed I
+  couldn't open the shared SSD or view and use its contents.
+- **Cause:** Safeblock converted the SSD to read-only mode, which stopped
+  Fedora from making any changes to the files on it.
+- **Fix:** I wasn't able to fix this either. See
+  [leaving-fedora.md](leaving-fedora.md) for the full story and everything I
+  tried.
+
+---
+
+None of the problems above were caused by Fedora itself, but they were still
+real obstacles I ran into along the way.
