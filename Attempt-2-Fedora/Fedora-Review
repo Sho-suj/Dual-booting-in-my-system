@@ -1,0 +1,38 @@
+# Attempt 2: Fedora — Review
+
+Omarchy knew exactly what it wanted to be, but it still let users decide how
+to present it. Fedora felt much cleaner, and lets the user customize it just
+as completely. I really enjoyed Fedora. With Omarchy, I felt overwhelmed,
+not even knowing how to open apps at first, but Fedora let me switch over
+from Windows much more easily. It was similar enough to feel familiar, but
+different enough to stand out, which I really liked.
+
+Using Fedora, I fell in love with Linux and with building projects in
+general. For the first time, things like `sudo`, `dnf` (and how it compared
+to `apt` or `pacman`), and other core commands actually started making sense
+to me, rather than just being instructions I copied without understanding. I
+never enjoyed using the terminal much during Omarchy, but Fedora is where
+that changed. It made me realise how effective hands-on projects are for
+actually understanding what I learned, and how to properly use it. Wanting
+to improve, I watched videos and learned through TryHackMe rooms. I became
+more comfortable with the terminal and started using it daily, to create
+files, move them, update my system, install software, and more, so much so
+that I started installing apps through PowerShell using `winget`.
+
+Fedora comes in two main versions: one with KDE Plasma, which gives a more
+Windows-like appearance, and one with GNOME, which feels closer to Mac. I
+picked KDE, but if you want a different window manager, like Hyprland or
+XFCE, you can install and set one up later. As I mentioned, letting users
+pick what they wanted from their OS was a huge factor in why I chose Fedora.
+It also has a six-month release cycle with frequent kernel updates, so the
+system stays up to date with whatever new open-source software gets
+released. Although proprietary, it also has solid NVIDIA driver support,
+which mattered to me since my laptop has an NVIDIA graphics card.
+
+Overall, it was a wonderful experience, and I learned a lot from it. I'd
+definitely recommend Fedora to people wanting to get into Linux. I'd
+recommend it over Mint or Ubuntu, since it strikes a great balance between
+what makes Linux unique and what Windows users are used to, making it a good
+middle ground for newcomers like me.
+
+**Rating: 10/10**
