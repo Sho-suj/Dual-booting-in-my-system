@@ -255,3 +255,216 @@ months, I got more used to the terminal command and linux in general.
 
 ---
 
+# Attempt 3: Arch
+
+> Well documented, with screenshots of everything done.
+
+## Summary
+
+Initially, this was going to be another dual-boot attempt, installing
+Pop!_OS. But while checking Facebook Marketplace for cheap systems, I managed
+to get a Lenovo ThinkPad X230 for £50.
+
+## Preparation
+
+- **Research:** I read through the Arch wiki briefly and watched videos on
+  YouTube. Luckily, the Arch ISO comes with `archinstall`, a guided installer
+  which makes the installation a lot simpler. I would still recommend reading
+  the wiki, as installing Arch manually makes you more knowledgeable about
+  Linux in general:
+  https://wiki.archlinux.org/title/Installation_guide
+- **Backups:** As it was a new system, I didn't have to back anything up or
+  worry about wiping anything of value, as there was nothing of value on it.
+
+## Downloading the ISO
+
+I downloaded the ISO from an Arch mirror over https. Once the download
+finishes, you should check its hash to make sure the file wasn't corrupted or
+tampered with.
+
+<img width="400" alt="ISO image download" src="https://github.com/user-attachments/assets/cc17dcc4-c687-42ba-a162-c45a1b38c8be" />
+
+To generate the hash, I opened PowerShell and ran:
+`Get-FileHash <ISO location> -Algorithm SHA256`
+Then I compared the result to the matching line in `sha256sums.txt`, which sits
+in the same folder as the ISO on the mirror.
+
+<img width="400" alt="Checking the hash" src="https://github.com/user-attachments/assets/62745b94-3f99-4b90-b1c3-be66ca66be5f" />
+
+> **Note:** a hash from the same mirror only proves the download wasn't
+> corrupted. For a stronger check, compare it to the hash on
+> archlinux.org/download or verify the `.sig` file with `gpg`.
+
+## Creating the USB
+
+Like Omarchy, I used Rufus to flash the ISO onto the USB. As I had uninstalled
+Rufus, I downloaded it through winget, as it was much quicker than going to the
+website.
+
+<img width="400" alt="Rufus download through winget" src="https://github.com/user-attachments/assets/cd529cff-4b59-4f00-9dc6-6598e28bbc7a" />
+
+I used the **GPT** partition scheme, **UEFI** as the target system and
+**FAT32** as the file system, then waited for the flashing to finish.
+
+> **Warning:** Rufus erases everything on the selected USB, so check the
+> device name before pressing Start.
+
+*Note: the Arch wiki lists various other ways to flash the USB, which I found
+interesting, so definitely give it a read.*
+
+<img width="400" alt="Rufus" src="https://github.com/user-attachments/assets/defd2bf6-b62d-4f62-afaf-154e0a601cae" />
+
+<img width="400" alt="Rufus complete" src="https://github.com/user-attachments/assets/b024c981-992b-44f0-8161-72fabbd6e512" />
+
+## Installation
+
+Like the previous attempts, I booted from the USB by pressing **F12** at
+startup to open the boot menu and picking the Generic Flash Disk.
+
+<img width="400" alt="Boot menu" src="https://github.com/user-attachments/assets/2b2b4720-558e-402c-bba0-626adc9e17a2" />
+
+1. **Boot loader menu:** chose **Arch Linux install medium**.
+
+<img width="400" alt="boot loader menu" src="https://github.com/user-attachments/assets/1e8b2248-2fc5-4969-8927-705d0e171a69" />
+
+2. **Terminal:** I was met with a black, terminal-like screen with just a text
+   window.
+
+<img width="400" alt="CLI" src="https://github.com/user-attachments/assets/aa636db9-9af1-4e94-b7d6-f7fbb8352bf9" />
+
+3. **Internet check:** I checked my IP address with `ip a`, then pinged with
+   `ping -c 5 8.8.8.8`. Here `-c 5` sends 5 pings and 8.8.8.8 is one of
+   Google's public DNS servers. Pinging an address only proves the connection
+   works, so I'd also try `ping -c 5 archlinux.org` to check DNS.
+
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/a9efb862-5626-4d79-88e4-5fb3d44513ab" />
+
+4. **Wi-Fi:** I got no IP and no replies, so I had no connection. I ran
+   `iwctl`, a tool for connecting to Wi-Fi, checked the device list, viewed
+   the available networks, found mine and connected with the password.
+
+<img width="400" alt="iwctl menu" src="https://github.com/user-attachments/assets/4f2e0e7d-4233-41aa-a4ca-cca084c7ae31" />
+
+> **Note:** you can skip this with an Ethernet connection, which I didn't
+> have.
+
+5. **SSH for better screenshots:** To document the installation better, and
+   not just take photos with another device, I set up SSH so I could take
+   clearer screenshots from my main laptop. For this you need a root password,
+   which you set with `passwd`. It's completely optional, but I did it for
+   higher quality documentation.
+
+<img width="400" alt="pwd root" src="https://github.com/user-attachments/assets/9340012b-2ed3-4524-82b2-dbad82dc6179" />
+
+(screenshot taken from a YouTube video, not my actual screenshot, since I didn't have it)
+
+> **Note:** both computers need to be on the same network. If you use a VPN on
+> the other computer, turn it off or allow local network connections. Mine
+> blocked the connection.
+
+6. **Connecting over SSH:** From my main system, I opened PowerShell and
+   connected with `ssh root@<ip address>`, then entered the root password I had
+   set.
+
+<img width="600" alt="SSH connected" src="https://github.com/user-attachments/assets/e45233ba-f1cb-4fc6-8e62-72f0182a48e0" />
+
+7. **Starting archinstall:** Once connected, I typed `archinstall`, which starts
+   the guided installer and makes the whole process a lot easier.
+
+<img width="600" alt="archinstall language" src="https://github.com/user-attachments/assets/a259376a-20ee-4ea1-b426-add995993160" />
+
+## Configuring archinstall
+
+From here, most of the process is simple menu choices. I went through them in
+this order:
+
+1. **Language and keyboard layout:** picked both at the start.
+
+<img width="600" alt="keyboard settings" src="https://github.com/user-attachments/assets/33965496-266d-450e-bbb3-59da53d08eee" />
+
+2. **Mirrors and repositories:** selected my mirror region.
+
+<img width="400" alt="mirrors and repository" src="https://github.com/user-attachments/assets/4e487277-0a88-43bf-9fe0-0790f92bddb2" />
+
+3. **Disk configuration:** selected the disk to install on, which is normally
+   your SSD and **not the USB**, then chose **ext4** as the file system. I left
+   swap as the default.
+
+> **Warning:** the installer wipes the disk you select. Check the device name
+> and size carefully, so you don't pick the installer USB or a disk you want to
+> keep.
+
+<img width="600" alt="disk configuration" src="https://github.com/user-attachments/assets/daaec69f-42dc-4f44-a1f2-6b6af69e20a5" />
+
+<img width="600" alt="disk selection for installation" src="https://github.com/user-attachments/assets/8db22a28-76e0-4281-8d35-8151d106e548" />
+
+<img width="400" alt="main file system" src="https://github.com/user-attachments/assets/b65f6636-e0b1-484a-97c3-68501c9d41f0" />
+
+<img width="400" alt="swap" src="https://github.com/user-attachments/assets/3d8ce047-1688-4004-9fda-9eaf37e81ed7" />
+
+4. **Bootloader and kernels:** picked a bootloader and installed two kernels:
+   `linux` (the main one) and `linux-lts` (a long-term support backup, in case
+   an update breaks the main one).
+
+<img width="400" alt="bootloader" src="https://github.com/user-attachments/assets/156a2ced-3a50-4b53-94dc-b16730c5fc9f" />
+
+5. **Hostname:** set the hostname to `archie`.
+
+<img width="400" alt="hostname" src="https://github.com/user-attachments/assets/1cd566e3-662c-47c2-a8ac-d65938544024" />
+
+6. **Root password and user account:** set a root password and created my user
+   account.
+
+<img width="400" alt="root password, user account" src="https://github.com/user-attachments/assets/66dcfded-3bec-470a-8837-af2609326891" />
+
+<img width="400" alt="useraccount" src="https://github.com/user-attachments/assets/2c662722-cb94-4f26-bf2e-69a5eb156f1a" />
+
+<img width="400" alt="Screenshot 2026-11-20 013409" src="https://github.com/user-attachments/assets/b9aef533-f40a-4ded-9211-d83b6f2d9b5b" />
+
+<img width="400" alt="Screenshot 2026-11-20 013431" src="https://github.com/user-attachments/assets/5b6f0a3a-88ae-412e-914b-f09b6b1df7c6" />
+
+7. **Profile and desktop environment:** chose **Desktop** as the profile type,
+   then picked **Xfce4** as the desktop environment. I didn't like it, so
+   after the install I switched to **GNOME**. I also tried **Hyprland**, which
+   I really liked, but this old laptop couldn't run it smoothly and it hurt
+   performance, so I stayed on GNOME.
+
+<img width="600" alt="Desktop envirnoment" src="https://github.com/user-attachments/assets/9170421d-c551-440f-a5cb-f9f0a2ac7aa8" />
+<img width="400" alt="Screenshot 2026-11-20 013431" src="https://github.com/user-attachments/assets/5b6f0a3a-88ae-412e-914b-f09b6b1df7c6" />
+
+8. **Graphics driver and greeter:** picked the **Intel (open-source)** graphics
+   driver, since the X230 has Intel graphics, and left the greeter as default.
+
+<img width="600" alt="graphics driver" src="https://github.com/user-attachments/assets/9d1ad086-944e-458d-9f86-1134ceaee3b2" />
+
+<img width="400" alt="Profile overview" src="https://github.com/user-attachments/assets/744ee5e0-a750-4713-819b-c95c53012d99" />
+
+9. **Applications, network and extra packages:** left applications and network
+   at their defaults. The only additional package I added was `firefox`.
+
+<img width="400" alt="additional package" src="https://github.com/user-attachments/assets/7f3e21f9-8159-4d68-97ae-d06be6d1f803" />
+
+10. **Time zone:** set my time zone.
+
+Below is a screenshot of the full configuration before starting the
+installation.
+
+<img width="600" alt="overview" src="https://github.com/user-attachments/assets/6fdac084-1d01-4ad8-9b72-873f9434e87a" />
+
+## Running the install
+
+After checking the overview, I pressed **Install** and waited for it to finish.
+
+<img width="600" alt="installing" src="https://github.com/user-attachments/assets/53a98960-0249-4452-b8d0-76e3006b0904" />
+
+Once it was done, I chose **Reboot system**, and Arch was ready to use.
+
+<img width="600" alt="reboot" src="https://github.com/user-attachments/assets/bf233863-6947-417e-a127-dce3342b5543" />
+
+## Problem and Fixes
+
+During the installation one major problem arose, which was caused due to bad mirror which will
+be touched up more in the probelms with attempt 3 section
+
+## Final Result 
+
