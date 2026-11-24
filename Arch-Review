@@ -1,0 +1,32 @@
+# Attempt 3: Arch — Review
+
+Arch is one of the best distros I've ever used. It has everything I was
+looking for: simple yet complex, and it trusts the user to know what they're
+doing with their system, letting them use it fully without restrictions.
+
+It's stable while also providing frequent updates. During installation, it
+lets you pick from various desktop environments. On top of that, the Arch
+Wiki has a huge amount of useful information; reading through it alone
+teaches you a lot about Linux in general. I'd recommend reading it even if
+you have no plans to install Arch, just to learn.
+
+Even if you don't want to read the wiki and just want to run Arch,
+`archinstall` has made installing it much easier and simpler. You really
+only need to learn how to flash a USB with the ISO and check its hash after
+downloading; the rest of the steps are fairly straightforward. Since Arch is
+lightweight, it can be installed on almost any low-end device and still run
+well.
+
+I'd definitely recommend it to intermediate Linux users who want to learn
+more about the OS, and to people with an old or low-end laptop struggling to
+run Windows 11 or another heavy OS.
+
+It's only been a couple of days since I installed Arch, but I'm loving how
+it feels, similar to Fedora, and I can't wait to learn more about it.
+Hopefully, in the future, I'll be able to install it manually without
+relying on third-party guides, other than the wiki itself. Arch has a
+reputation for being difficult, and using it successfully has made me feel a
+lot more confident with Linux in general. I've been loving discovering new
+things and learning as I go.
+
+**Rating: 9/10**
