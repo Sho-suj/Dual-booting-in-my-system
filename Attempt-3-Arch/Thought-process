@@ -1,0 +1,130 @@
+# Attempt 3: Choosing Arch, and Getting the ThinkPad
+
+## Why I was still looking for a new distro
+
+As mentioned in the README, I'd originally planned to continue dual
+booting, starting fresh rather than sticking with Fedora, since an
+unfamiliar environment is where I learn the most. I wanted something
+similar to Fedora, since to me it was the perfect mix of Windows and Linux:
+simple, but letting the user customize their system without much
+restriction. It also needed to stay up to date with a frequent release
+cycle and have access to the latest open-source software, and it needed
+solid NVIDIA driver support, which Fedora had.
+
+## Distros considered
+
+**Arch (via Omarchy):** From Omarchy, I'd already learned about Arch. On
+paper, it felt like the perfect fit. It lets the user pick and choose
+exactly what they want in their system, rather than holding their hand and
+installing everything for them. But after more research, I realised arch
+wasn't quite the perfect fit after all, since its NVIDIA support, while
+present, wasn't as good as the proprietary drivers Fedora offered.
+
+**Mint and Ubuntu:** As mentioned in previous attempts, I'd already
+experienced Ubuntu through university. It felt too similar to Windows, and
+I wanted something new rather than going back to something I'd already
+used. I'd classify Mint as Ubuntu-like too, which is why I grouped them
+together. That's why neither was chosen, even though they're some of the
+most popular distros with excellent, wide package support.
+
+**Fedora, but GNOME this time:** Before anything else, I considered going
+back to Fedora, just downloading the GNOME version instead of the KDE
+Plasma version I'd originally picked, believing it to be more customizable.
+After digging through videos and blogs, I found ricing a GNOME environment
+easier than KDE, and that was enough to make me consider going back. I
+ultimately decided against it, since it would still be Fedora underneath,
+just with a different desktop environment, and I wanted a genuinely new
+experience. That said, GNOME piqued my interest, and I wanted a distro with
+GNOME as its primary desktop environment.
+
+**Gentoo:** Since my main laptop, the Nitro V15, is a gaming laptop, I
+thought Gentoo might be a good pick for it. But it has the same kind of
+simple design philosophy I was already looking for in Fedora, and it's
+another Arch variant, which made me want to go for the original Arch
+instead.
+
+**Debian:** Debian is popular and stable, but its long update cycle means
+the distro falls out of date quickly. That makes it a good fit for a
+homelab or server, but not for a workstation, where I'd actually want
+newer packages day to day. So I ruled it out.
+
+**Pop!_OS (the original plan):** Out of everything I looked at, I landed on
+Pop!_OS. It was simple and clean like Fedora, with GNOME available as a
+desktop option. I looked into it a little and liked what I saw, both the
+design and the overall feel, and planned to look into it further once I'd
+finished the rest of the repo, then properly document the install and the
+thinking behind it.
+
+## Getting the ThinkPad X230
+
+While researching the distro, I was also working on assignments for my next
+module, building this repo, and searching Amazon, eBay, and Facebook
+Marketplace for a cheap secondhand laptop. Eventually, I came across a
+listing for a ThinkPad X230 for £50 (originally £95, reduced). I contacted
+the seller and got a quick response.
+
+Checking the specs, it looked like a great deal. Lenovo ThinkPads,
+especially older generations, are known for being built to last, and this
+one still had room for upgrades (extra RAM slots, keyboard replacement, and
+so on). I spoke with the seller for a couple of hours. I didn't try to
+bargain the price down further, since I already thought it was a good deal,
+especially with the 8 GB of RAM it came with. He mentioned other people were
+interested in viewing it too, and since I really wanted it, I sent a £25
+deposit to hold it, and told him I'd come on Thursday to view it in person
+and buy it if it checked out.
+
+I didn't want to arrange delivery, since it's too easy to fake listings and
+records that way, and I wanted to see the laptop in person to reduce the
+chance of a scam. For the deposit, he gave me a friend's bank details rather
+than his own, which raised a flag, but I went ahead anyway, since bank
+transfers are relatively safe. To build trust, he sent me a photo of his
+driver's licence, though I stayed cautious regardless. I'd originally
+planned to bring a friend to the pickup, but that didn't work out, so I went
+alone. Before the meetup, he asked if I could just bring cash, which was
+another odd request, but I agreed anyway. To be safe, I did a quick
+background check through his Facebook profile for anything suggesting a
+prior scam or criminal history, and found nothing concerning, so I decided
+it was safe enough to go ahead.
+
+On Thursday, I took a two-hour train journey to the pickup spot with the
+remaining £25 in cash. When I arrived, he handed over the laptop and told me
+he'd reset it, but it clearly hadn't been reset properly, since it was still
+sitting on the network setup screen of the Windows out-of-box experience.
+That raised more red flags, and I considered asking for my deposit back and
+walking away. But the screen looked clean, with no dead pixels, so I decided
+to take the gamble and buy it.
+
+Once home, I started testing it immediately. It was extremely dirty, but I
+ran all my checks before cleaning it, so I wouldn't waste time. I first
+completed the Windows reset properly myself, without signing into my
+Microsoft account, in case the previous owner had left anything behind that
+could access my information.
+
+I opened the terminal and checked the SSD's health with:
+```powershell
+Get-PhysicalDisk | Select FriendlyName, HealthStatus, OperationalStatus
+```
+which reported it as healthy. I then checked Settings to confirm the specs
+matched the listing, which they did. I checked battery health with:
+```powershell
+powercfg /batteryhealth
+```
+which reported it at over 60% capacity, so I didn't need to replace it
+right away.
+
+With everything checking out, I cleaned the laptop, and it looked great
+afterward. The one issue was dust built up behind the keyboard, which I
+didn't know how to remove properly, so I used a blow dryer to clear it out.
+It worked reasonably well, and I ended up with a ThinkPad in genuinely good
+shape, worth a lot more than what I paid for it.
+
+## Why Arch, in the end
+
+With a new laptop in hand, I decided to put Linux on it. Arch has a strong
+reputation for reviving old laptops and making them feel new again, and
+after every other distro I'd considered got ruled out one way or another, I
+found myself wanting to try Arch more and more. That night, I abandoned the
+Pop!_OS plan and started downloading Arch instead. After a couple of days of
+daily driving it, I haven't run into any major problems, though I did hit a
+few difficulties during the installation itself, covered in the problems
+section for this attempt.
