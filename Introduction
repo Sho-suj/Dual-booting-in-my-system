@@ -1,29 +1,62 @@
 # Dual Boot Journey
 
-A long-overdue repo documenting my attempts to dual-boot Linux and Windows on my PC.
+A long-overdue repo documenting my attempts to dual-boot Linux and Windows on
+my PC.
 
-This is my **third attempt**. The first two (Omarchy, then Fedora) both worked, but each came with its own problems. I had screenshots and notes for both, but assignment submission week pushed documenting down my priority list. Then a complication with **Safeblock**, a forensic tool that blocks external drives and forces them into read-only mode, forced me to reset my PC, and I lost almost all of it. Only a few photos survive, either shared with a friend or uploaded online. What Safeblock did exactly is covered later in this repo.
+**Update:** this repo originally planned a third dual-boot attempt. That
+didn't end up happening. Instead, I got a second laptop from someone for
+£50 and installed Arch Linux on it as a standalone system, no dual boot
+involved. I've documented that install fully and included it here alongside
+the two dual-boot attempts, since it's still part of the same overall
+journey into Linux.
+
+This started as my second attempt at proper documentation, after my first two
+attempts (Omarchy, then Fedora) both worked, but each came with its own
+problems. I had screenshots and notes for both, but assignment submission
+week pushed documenting down my priority list. Then a complication with
+**Safeblock**, a forensic tool that blocks external drives and forces them
+into read-only mode, forced me to reset my PC, and I lost almost all of it.
+Only a few photos survive, either shared with a friend or uploaded online.
+What Safeblock did exactly is covered later in this repo.
 
 ## What's in this repo
 
-| Attempt | Distro | Documentation |
-|---------|--------|---------------|
-| 1 | Omarchy | Written from memory, with a few phone photos |
-| 2 | Fedora | Written from memory, with a few phone photos |
-| 3 | TBD | Fully documented and researched as I go |
+| Attempt | Distro | Type | Documentation |
+|---------|--------|------|----------------|
+| 1 | Omarchy | Dual boot | Written from memory, with a few phone photos |
+| 2 | Fedora | Dual boot | Written from memory, with a few phone photos |
+| 3 | Arch Linux | Standalone (£50 laptop) | Fully documented, step by step |
 
 ## My setup
 
-- **Machine:** Acer Nitro V15
+**Main machine (attempts 1 & 2):**
+- **Machine:** Acer Nitro V15 (ANV15-41)
 - **Disk:** 2 SSDs (500 GB and 1 TB)
 - **Firmware:** UEFI (Secure Boot status is covered in the documentation)
 - **Other OS:** Windows 11 Pro
 
+**Second machine (attempt 3):**
+- **Machine:** Lenovo ThinkPad X230 (type 2325TDP), Intel Core i5-3320M @
+  2.6 GHz, 8 GB DDR3, Intel HD 4000 graphics, Intel Centrino Advanced-N 6205
+  Wi-Fi
+- **Disk:** TCSUNBOW X3 240 GB SATA SSD (`/dev/sda`, about 223.6 GiB),
+  currently a single ext4 root partition, no LVM and no encryption
+- **Firmware:** Lenovo UEFI BIOS G2ET91WW (2.51), dated 2013-01-14, with
+  embedded controller G2HT31WW (1.10). Secure Boot is off, there are no
+  supervisor, power-on, or hard disk passwords, and the boot menu is on F12
+- **Acquired:** Bought secondhand for £50
+- **Previous OS:** Came with Windows 11, which I wiped and replaced entirely
+  with Arch Linux (GNOME desktop)
+- **Distro:** Arch Linux with GNOME, standalone (no dual boot)
+
+
 ## A note on accuracy
 
 Attempts 1 and 2 are reconstructed from memory, so details may be imperfect.
-Attempt 3 is documented step by step, with commands, configs, and screenshots.
+Attempt 3 is documented step by step, with commands, configs, and
+screenshots, since I wrote it up as I went.
 
 ## Disclaimer
 
-This is my experience, not a guarantee. Back up your data before touching partitions.
+This is my experience, not a guarantee. Back up your data before touching
+partitions.
