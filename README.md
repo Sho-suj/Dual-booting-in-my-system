@@ -468,3 +468,16 @@ be touched up more in the probelms with attempt 3 section
 
 ## Final Result 
 
+Arch was installed successfully, and I'm currently trying out different
+desktop environments to see which one I like most. Arch made the whole
+system feel really smooth to run, though it still doesn't compare to a
+modern system's speed. Still, comparing a decade-old laptop to something
+modern and seeing it keep up as well as it does is genuinely surprising.
+
+The ThinkPad lives up to its reputation: built to last, and very
+upgradable. I've seen people add more storage, swap in better displays, and
+modify ThinkPads in all kinds of ways, which could make for some good
+projects of my own in the future.
+
+Overall, I really enjoyed everything that happened: the good, the bad, and
+the workarounds. The whole learning experience was fun.
